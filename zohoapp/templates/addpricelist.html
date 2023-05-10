@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<section >
+    <div class="row fixed-top  " style="top: 7rem; margin-left: 18rem;" >
+     
+      <div class="col-md-10 " style=" position: fixed;">
+          <h3  class="mb-3  text-white  " style="font-size: 2rem;">New Price List</h3>
+          <form action="{% url 'addpl' %}" method="post">
+          {% csrf_token %}
+            <div class="form-group row">
+                <label  class="col-sm-2 col-form-label">Name *</label>
+                <div class="col-sm-10 col-md-7 col-9" style="margin-left: -2.2rem;">
+                  <input required type="text" class="form-control" name="name">
+                </div>
+              </div>
+              <div class="row">
+                <label class="col-form-label col-sm-2 pt-0">Type </label>
+                <div class="col-sm-10 form-inline">
+                  <div class="form-check ">
+                    <input required class="form-check-input" type="radio" name="type" id="gridRadios1" value="sales" >
+                    <label class="form-check-label" for="gridRadios1">
+                      Sales
+                    </label>
+                  </div>
+                  <div class="form-check ml-5">
+                    <input required class="form-check-input" type="radio" name="type" id="gridRadios2" value="purchase">
+                    <label class="form-check-label" for="gridRadios2">
+                     Purchase
+                    </label>
+                  </div>
+                 
+                </div>
+              </div>
+              <div class="form-inline text-white">
+     
+                <label class=" mb-3 mr-3" for="">Tax Preference  </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                
+                
+                
+                <p class="text-white  ">
+                  <input type="radio"  name="radio" value="mark" onclick="showAllSelect()"> <p class="mr-5">Markup or Markdown the item rates by a percentage</p></p><br>
+                
+                  <p><input type="radio" name="radio" value="rate" onclick="hideAllSelect()">Enter the rate individually for each item </p>
+                 </div>
+                      
+                 
+                      
+                  <div >
+                    <label>Description</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <textarea name="desc" rows="4" cols="50" placeholder="enter the Description"></textarea>
+                  </div>
+                  <div id="select1_div" style="display: none;">
+                    <label for="select1">Currency</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <select name="currency" id="select1">
+                      <option value="rupee">Indain Rupee</option>
+                    </select>
+                  </div> 
+                  
+                    
+                  <div id="select3_div" >
+                        <label class="text-danger">
+                           Percentage * 
+                        </label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                              <div class="input-group">
+                                <select name="mark">
+                                    <option>Markup</option>
+                                    <option>Markdown</option>
+                                </select>
+                              </div>
+                            </div>
+                            <input required type="text" name="per">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">%</div>
+                              </div>
+                          </div>
+                    </div><br>
+                    <div id="select4_div">
+                    <label class="text-danger">Round Off To*</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <select name="round">
+                        <option>Never Mind</option>
+                        <option>Nearest Whole Number</option>
+                        <option>0.99</option>
+                        <option>0.50</option>
+                        <option>0.49</option>
+
+                    </select>
+                </div>
+                <div>
+                  <input type="submit"  class="mr-3 btn btn-success"  value="Save">
+                  <input type="submit" class="btn btn-secondary but" value="Cancel">
+                      </div>
+                </div>
+                
+          </form>
+                <script>
+                    function showAllSelect() {
+                      var select1_div = document.getElementById("select1_div");
+                      select1_div.style.display = "none";
+                      var select1_div = document.getElementById("select3_div");
+                      select1_div.style.display = "block";
+                      var select1_div = document.getElementById("select4_div");
+                      select1_div.style.display = "block";
+                    }
+                    
+                    function hideAllSelect() {
+                      var select1_div = document.getElementById("select3_div");
+                      select1_div.style.display = "none";
+                      var select1_div = document.getElementById("select4_div");
+                      select1_div.style.display = "none";
+                      var select1_div = document.getElementById("select1_div");
+                      select1_div.style.display = "block";
+                    }
+                    </script>
+     
+                
+
+    </div>
+      </div>
+    </div>
+</section>     
+{% endblock %}
